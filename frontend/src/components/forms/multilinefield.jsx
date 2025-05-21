@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import {Controller} from 'react-hook-form' 
 
-export default function MultilineTextFields() {
-  const {label,placeholder,name,control} = props
+export default function MultilineTextFields(props) {
+  const {label,width,placeholder,name,control} = props
   return (
 
     <Controller
@@ -13,27 +13,30 @@ export default function MultilineTextFields() {
     render = {({
         field:{onChange,value},
         fieldState:{error},
-        formState,
-    })=>{
+        formState,  
+    })=>(
     <Box
       component="form"
-      sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+      sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' },marginTop:'10px' }}
       noValidate
       autoComplete="off"
     >
         <div>
         <TextField
+          sx={{width:{width}}}
           id="standard-multiline-static"
           label={label}
           multiline
-          rows={4}
-          defaultValue="Default Value"
+          rows={1}
+          defaultValue={value}
           variant="standard"
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
         />
       </div>
     </Box>
-    }}/>
+  )}/>
 
   );
 }
